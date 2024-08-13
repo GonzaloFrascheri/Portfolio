@@ -33,10 +33,10 @@ const Navbar = () => {
                 <Link to="/">Home</Link>
             </li>
             <li>
-                <Link to="/project">Project</Link>
+                <Link to="/project">Projects</Link>
             </li>
             <li>
-                <Link to="/about">About</Link>
+                <Link to="/about">About me</Link>
             </li>
             <li>
                 <Link to="/contact">Contact</Link>
@@ -44,7 +44,6 @@ const Navbar = () => {
         </ul>
         <div className="hamburger" onClick={handleClick}>
             {click ? (<FaTimes size={20} style={{color: "#fff"}} />) : (<FaBars size={20} style={{color: "#fff"}} />)}            
-            
         </div>
     </div>
   )

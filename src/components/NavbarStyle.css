@@ -15,6 +15,7 @@
 
 .nav-menu{
     display: flex;
+    list-style: none;
 }
 
 .nav-menu li{
@@ -26,8 +27,9 @@
     font-weight: 500;
 }
 
-.hamburger{
+.hamburger {
     display: none;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 1040px){
@@ -42,11 +44,12 @@
         top: 0;
         left: -100%;
         z-index: -3;
-        transition: 0.3s;
+        transition: left 0.3s ease-in-out;
     }
 
     .nav-menu.active{
         left: 0;
+        z-index: 5;
     }
 
     .nav-menu li{
@@ -58,6 +61,6 @@
     }
 
     .hamburger{
-        display: initial;
-    }
+        display: block;
+    } 
 }
