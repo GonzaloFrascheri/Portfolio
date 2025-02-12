@@ -26,6 +26,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    /* Agregamos color blanco para el texto */
+    color: #fff;
 }
 
 .hero-img h1{

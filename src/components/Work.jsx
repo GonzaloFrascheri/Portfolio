@@ -1,30 +1,34 @@
-import "./WorkCardStyles.css"
-
+import "./WorkCardStyles.css";
 import WorkCard from "./WorkCard";
-import WorkCardData from "./WorkCardData";
-
-import React from 'react'
+import WorkCardData from "./WorkCardData"; // Importa el array de datos
+import React from 'react';
+import { motion } from "framer-motion";
 
 const Work = () => {
   return (
-    <div className="work-container">
-        <h1 className="project-heading">Proyectos</h1>
-        <div className="project-container">
-           {WorkCardData.map((val, ind) => {
-                return(
-                    <WorkCard 
-                    key={ind}
-                    imgsrc={val.imgsrc}
-                    title={val.title}
-                    text={val.text}
-                    view={val.view}
-                    source={val.source}
-                    />
-                );
-           })}
-        </div>
-    </div>
-  )
-}
+    <motion.div
+      className="work-container"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+    >
+      <h1 className="project-heading">Proyectos</h1>
+      <div className="project-container">
+        {WorkCardData.map((val, ind) => {
+          return (
+            <WorkCard
+              key={ind}
+              imgsrc={val.imgsrc}
+              title={val.title}
+              text={val.text}
+              view={val.view}
+              source={val.source}
+            />
+          );
+        })}
+      </div>
+    </motion.div>
+  );
+};
 
 export default Work;

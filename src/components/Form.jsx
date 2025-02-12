@@ -1,7 +1,5 @@
-import "./FormStyles.css"
-
-import React, { useState } from 'react'
-
+import "./FormStyles.css";
+import React, { useState } from 'react';
 
 const Formulario = () => {
   const [formData, setFormData] = useState({
@@ -9,87 +7,83 @@ const Formulario = () => {
     email: '',
     tema: '',
     mensaje: '',
-  })
-
-  return (
-    <div className="form">
-        <form>
-            <label>Tu nombre</label>
-            <input type="text" />
-            <label>Email</label>
-            <input type="email" />
-            <label>Tema</label>
-            <input type="text" />
-            <label>Mensaje</label>
-            <textarea rows="6" placeholder="Escribe tu mensaje aquí"></textarea>
-            <button className="btn">Enviar</button>
-        </form>
-    </div>
-  )
-};
-
-const handleChange = (e) => {
-  setFormData({
-    ...formData,
-    [e.target.name]: e.target.value
   });
-};
 
-const handleSubmit = (e) => {
-  e.preventDefault();
+  // Actualiza el estado según el input
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
 
-  // Envío de los datos del formulario a una API (ficticia)
-  fetch('https://tu-servidor-api.com/enviar-correo', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(formData)
-  })
-  .then(response => {
-    if (response.ok) {
-      // Lógica para manejar el éxito del envío del formulario
-      console.log('Mensaje enviado con éxito');
-      // Aquí puedes redirigir o mostrar un mensaje de confirmación
-    } else {
-      // Lógica para manejar errores en el envío del formulario
-      console.error('Error al enviar el mensaje');
+  // Función para enviar el formulario
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch('http://localhost:3000/enviar-correo', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        alert('Mensaje enviado con éxito');
+        // Reinicia los campos
+        setFormData({ nombre: '', email: '', tema: '', mensaje: '' });
+      } else {
+        alert('Error al enviar el mensaje');
+      }
+    } catch (error) {
+      console.error('Error inesperado:', error);
+      alert('Error al enviar el mensaje');
     }
-  })
-  .catch(error => {
-    console.error('Error inesperado:', error);
-  });
+  };
+
   return (
     <div className="form">
       <form onSubmit={handleSubmit}>
         <label>Tu nombre</label>
-        <input type="text" name="nombre" value={formData.nombre} onChange={handleChange} />
-        {/* Resto de los campos del formulario */}
+        <input
+          type="text"
+          name="nombre"
+          placeholder="Ingresa tu nombre"
+          value={formData.nombre}
+          onChange={handleChange}
+          required
+        />
+        <label>Email</label>
+        <input
+          type="email"
+          name="email"
+          placeholder="Ingresa tu email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+        />
+        <label>Tema</label>
+        <input
+          type="text"
+          name="tema"
+          placeholder="Ingresa el tema"
+          value={formData.tema}
+          onChange={handleChange}
+          required
+        />
+        <label>Mensaje</label>
+        <textarea
+          rows="6"
+          name="mensaje"
+          placeholder="Escribe tu mensaje aquí"
+          value={formData.mensaje}
+          onChange={handleChange}
+          required
+        ></textarea>
         <button className="btn" type="submit">Enviar</button>
       </form>
     </div>
   );
 };
 
-
-
-/*
-const Form = () => {
-  return (
-    <div className="form">
-        <form>
-            <label>Tu nombre</label>
-            <input type="text" />
-            <label>Email</label>
-            <input type="email" />
-            <label>Tema</label>
-            <input type="text" />
-            <label>Mensaje</label>
-            <textarea rows="6" placeholder="Escribe tu mensaje aquí"></textarea>
-            <button className="btn">Enviar</button>
-        </form>
-    </div>
-  )
-}*/
-
-export default Formulario
+export default Formulario;

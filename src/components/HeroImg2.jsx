@@ -1,18 +1,21 @@
-import "./HeroImg2Styles.css"
+import React from 'react';
+import { motion } from 'framer-motion';
+import "./HeroImg2Styles.css";
 
-import React, { Component } from 'react'
-
-class HeroImg2 extends Component{
-  render(){
-    return (
-      <div className="hero-img">
-        <div className="heading">
-          <h1>{this.props.heading}</h1>
-          <p>{this.props.text}</p>
-        </div>
+const HeroImg2 = ({ heading, text }) => {
+  return (
+    <motion.div 
+      className="hero-img"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+    >
+      <div className="heading">
+        <h1>{heading}</h1>
+        <p>{text}</p>
       </div>
-    );
-  }
-}
+    </motion.div>
+  );
+};
 
 export default HeroImg2;

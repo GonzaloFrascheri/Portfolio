@@ -1,28 +1,35 @@
-const express = require('express');
-const nodemailer = require('nodemailer');
+// sendEmail.js (versión ES modules)
+import express from 'express';
+import nodemailer from 'nodemailer';
+import dotenv from 'dotenv';
+import cors from 'cors';
+
+dotenv.config();
+
 const app = express();
+const gmailPassword = process.env.GMAIL_PWD; // Usamos el nuevo nombre
 
-require('dotenv').config();
+console.log('Contraseña leída desde .env:', gmailPassword); // Debería mostrar "wvzogzrobaiuxmik"
 
-const PWD = process.env.PWD;
-
+app.use(cors());
 app.use(express.json());
 
 app.post('/enviar-correo', (req, res) => {
   const { nombre, email, tema, mensaje } = req.body;
 
-  // Configurar nodemailer con tus credenciales y opciones de correo
   const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
     auth: {
-      user: 'gonzalofrascheri@gmail.com', // Tu dirección de correo desde donde se enviará el mensaje
-      pass: PWD // Tu contraseña
+      user: 'gonzalofrascheri@gmail.com',
+      pass: gmailPassword
     }
   });
 
   const mailOptions = {
-    from: 'tucorreo@gmail.com',
-    to: 'destinatario@example.com', // El destinatario del correo electrónico
+    from: 'gonzalofrascheri@gmail.com',
+    to: 'gonzalofrascheri@gmail.com',
     subject: `Nuevo mensaje de ${nombre} - ${tema}`,
     text: `De: ${nombre}\nEmail: ${email}\nMensaje:\n${mensaje}`
   };
