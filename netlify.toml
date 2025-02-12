@@ -1,0 +1,8 @@
+[build]
+  functions = "netlify/functions"
+  publish = "dist"  # o la carpeta donde esté tu front-end compilado
+  command = "npm run build" # Asegura que se genere la carpeta dist
+
+[dev]
+  command = "npm run dev"
+  targetPort = 5173

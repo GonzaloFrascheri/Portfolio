@@ -22,7 +22,7 @@ const Formulario = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:3000/enviar-correo', {
+      const response = await fetch('/.netlify/functions/sendEmail', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
