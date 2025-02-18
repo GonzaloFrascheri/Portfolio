@@ -1,8 +1,8 @@
 import React from 'react';
-import Navbar from '../components/Navbar';
-import HeroImg2 from '../components/HeroImg2';
-import Formulario from '../components/Form';  // Asegúrate de importar el formulario correcto
-import Footer from '../components/Footer';
+import Navbar from '../components/Navbar/Navbar';
+import HeroImg2 from '../components/HeroImg2/HeroImg2';
+import Formulario from '../components/Form/Form'; 
+import Footer from '../components/Footer/Footer';
 import { motion } from "framer-motion";
 
 const Contact = () => {

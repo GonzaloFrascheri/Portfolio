@@ -1,9 +1,9 @@
 import React from 'react'
 
-import Navbar from '../components/Navbar';
-import HeroImg from '../components/HeroImg';
-import Footer from '../components/Footer';
-import Work from "../components/Work"
+import Navbar from '../components/Navbar/Navbar';
+import HeroImg from '../components/HeroImg/HeroImg';
+import Experience from '../components/Experience/Experience';
+import Footer from '../components/Footer/Footer';
 import { motion } from 'framer-motion';
 
 
@@ -16,7 +16,7 @@ const Home = () => {
     >
       <Navbar />
       <HeroImg />
-      <Work />
+      <Experience />
       <Footer />
     </motion.div>  
   );

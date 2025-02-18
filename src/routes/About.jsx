@@ -1,8 +1,8 @@
 import React from 'react'
-import Navbar from '../components/Navbar';
-import HeroImg2 from '../components/HeroImg2';
-import AboutContent from '../components/AboutContent';
-import Footer from '../components/Footer';
+import Navbar from '../components/Navbar/Navbar';
+import HeroImg2 from '../components/HeroImg2/HeroImg2';
+import AboutContent from '../components/AboutContent/AboutContent';
+import Footer from '../components/Footer/Footer';
 import { motion } from "framer-motion"
 
 const About = () => {
@@ -13,7 +13,7 @@ const About = () => {
       exit={{ opacity: 0 }}
     >
       <Navbar />
-      <HeroImg2 heading="ABOUT." text="I'm a Front-End Developer."/>
+      <HeroImg2/>
       <AboutContent />
       <Footer />
     </motion.div>
